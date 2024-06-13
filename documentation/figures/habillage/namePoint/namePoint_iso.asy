@@ -1,0 +1,12 @@
+settings.render = -4 ;
+settings.prc = false ;
+import biblioLiaisons ;
+defaultpen(fontsize(10pt)) ;
+unitsize(1cm) ;
+triple eye = (1,1,1) ;
+triple up = (0,1,0) ;
+currentprojection = orthographic(eye, up, O) ;
+currentlight = nolight ;
+showBasis(b0, O, coeff=1.5*(1,1,1)) ;
+namePoint(O+(1,0.6,0.1), 'A', pos=NE) ;
+namePoint(O+(-1,-0.8,-0.3), 'B', pos=(-0.5,1.5)) ;

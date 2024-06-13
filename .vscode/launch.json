@@ -1,0 +1,20 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+    
+        {
+            "name": "Run Batch",
+            "type": "cppvsdbg",
+            "request": "launch",
+            "program": "cmd.exe",
+            "args": [
+                "/c",
+                "0_run.bat"
+            ],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+            "environment": [],
+            "console": "externalTerminal"
+        }
+    ]
+}
