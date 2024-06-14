@@ -1,0 +1,339 @@
+{
+	// Place your snippets for asymptote here. Each snippet is defined under a snippet name and has a prefix, body and 
+	// description. The prefix is what is used to trigger the snippet and the body will be expanded and inserted. Possible variables are:
+	// $1, $2 for tab stops, $0 for the final cursor position, and ${1:label}, ${2:another} for placeholders. Placeholders with the 
+	// same ids are connected.
+	// Example:
+	// "Print to console": {
+	// 	"prefix": "log",
+	// 	"body": [
+	// 		"console.log('$1');",
+	// 		"$2"
+	// 	],
+	// 	"description": "Log output to console"
+	// }
+	"liaisonGlissiere": {
+		"prefix": [
+			"glissiere",
+			"liaisonsGlissiere"
+		],
+		"body": [
+			"liaisonsGlissiere(${1:point}, ${2:direction}, ${3:orientation}, ${4:CEC1}, ${5:CEC2}) ;"
+		],
+		"description": "Liaison glissière 3D"
+	},
+	"liaisonPivot": {
+		"prefix": [
+			"pivot",
+			"liaisonPivot"
+		],
+		"body": [
+			"liaisonPivot(${1:point}, ${2:axis}, ${3:stopAxis}, ${4:CEC1}, ${5:CEC2}) ;"
+		],
+		"description": "Liaison pivot 3D"
+	},
+	"liaisonPivotGlissant": {
+		"prefix": [
+			"pivotGlissant",
+			"liaisonPivotGlissant"
+		],
+		"body": [
+			"liaisonPivotGlissant(${1:point}, ${2:axis}, ${3:CEC1}, ${4:CEC2}) ;"
+		],
+		"description": "Liaison pivot glissant 3D"
+	},
+	"liaisonRotule": {
+		"prefix": [
+			"rotule",
+			"liaisonRotule"
+		],
+		"body": [
+			"liaisonRotule(${1:point}, ${2:orientation}, ${3:CEC1}, ${4:CEC2}) ;"
+		],
+		"description": "Liaison rotule 3D"
+	},
+	"liaisonAppuiPlan": {
+		"prefix": [
+			"appuiplan",
+			"liaisonAppuiPlan"
+		],
+		"body": [
+			"liaisonAppuiPlan(${1:point}, ${2:normal}, ${3:orientation}, ${4:CEC1}, ${5:CEC2}) ;"
+		],
+		"description": "Liaison appui plan"
+	},
+	"liaisonRotuleDoigt": {
+		"prefix": [
+			"doigt",
+			"rotule a doigt",
+			"rotuledoigt",
+			"liaisonRotuleDoigt"
+		],
+		"body": [
+			"liaisonRotuleDoigt(${1:point}, ${2:orientation}, ${3:orientationTige}, ${4:CEC1}, ${5:CEC2}) ;"
+		],
+		"description": "Liaison rotule à doigt 3D"
+	},
+	"liaisonLineaireAnnulaireA": {
+		"prefix": [
+			"lineaireAnnulaire",
+			"annulaire",
+			"liaisonLA"
+		],
+		"body": [
+			"liaisonLineaireAnnulaire(${1:point}, ${2:axe}, ${3:coteDemiCylindre}, ${4:CEC1}, ${5:CEC2}) ;"
+		],
+		"description": "Liaison linéaire annulaire 3D"
+	},
+	"liaisonHelicoidale": {
+		"prefix": [
+			"liaisonHelicoidale",
+			"helicoidale"
+		],
+		"body": [
+			"liaisonHelicoidale(${1:point}, ${2:axe}, ${3:CEC1}, ${4:CEC2}) ;"
+		],
+		"description": "Liaison hélicoïdale 3D"
+	},
+	"liaisonLineaireRectiligne": {
+		"prefix": [
+			"liaisonLineaireRectiligne",
+			"rectiligne",
+			"lineaire"
+		],
+		"body": [
+			"liaisonLineaireRectiligne(${1:point}, ${2:normale}, ${3:droiteContact}, ${4:CEC1}, ${5:CEC2}) ;"
+		],
+		"description": "Liaison linéaire rectiligne 3D"
+	},
+	"liaisonPonctuelle": {
+		"prefix": [
+			"liaisonPonctuelle",
+			"ponctuelle",
+			"sphereplan"
+		],
+		"body": [
+			"liaisonPonctuelle(${1:point}, ${2:normale}, $(3:orientation), ${4:CEC1}, ${5:CEC2}) ;"
+		],
+		"description": "Liaison ponctuelle 3D"
+	},
+	"transEngrenages": {
+		"prefix": [
+			"pignon",
+			"roue dentee",
+			"engrenanges",
+			"transEngrenages"
+		],
+		"body": [
+			"transEngrenages(${1:pointRoue1}, ${2:axeRoue1}, ${3:rayon1}, ${4:CEC1}, ${5:pointRoue2}, ${6:axeRoue2}, ${7:CEC2}) ;"
+		],
+		"description": "Transmission de puissance par engrenanges 3D"
+	},
+	"transPoulieCourroie": {
+		"prefix": [
+			"poulie",
+			"courroie",
+			"transPoulieCourroie"
+		],
+		"body": [
+			"transPoulieCourroie(${1:pointRoue1}, ${2:axeRoue1}, ${3:rayon1}, ${4:CEC1}, ${5:pointRoue2}, ${6:axeRoue2}, ${7:rayon2}, ${8:CEC2}) ;"
+		],
+		"description": "Transmission de puissance par poulie courroie 3D"
+	},
+	"transPignonCremailliere": {
+		"prefix": [
+			"pignon",
+			"cremailliere",
+			"transPignonCremailliere",
+			"PignonCremailliere"
+		],
+		"body": [
+			"transPignonCremailliere(${1:pointPignon}, ${2:axePignon}, ${3:CEC1}, ${4:pointCremailliere}, ${5:axeCremailliere}, ${6:L_cremailliere}, ${7:CEC2}) ;"
+		],
+		"description": "Transmission de puissance par pignon crémaillière 3D"
+	},
+	"transRoueVis": {
+		"prefix": [
+			"transRoueVis",
+			"roue",
+			"visSansFin",
+		],
+		"body": [
+			"transRoueVis(${1:pointVis}, ${2:axeVis}, ${3:CEC1}, ${4:pointRoue}, ${5:axeRoue}, ${6:CEC2}) ;"
+		],
+		"description": "Transmission de puissance par roue vis sans fin 3D"
+	},
+	"bati": {
+		"prefix": [
+			"bati"
+		],
+		"body": [
+			"bati(${1:point}, ${2:dirGrandeBarre}, ${3:cotePetiteBarre}, ${4:CEC}) ;"
+		],
+		"description": "bati 3D"
+	},
+	"rotationBasis": {
+		"prefix": [
+			"rotationBasis",
+			"base",
+			"basis",
+			"rotation"
+		],
+		"body": [
+			"rotationBasis(${1:number}, ${2:parent}, ${3:theta}, ${4|'x','y','z'|}, ${5:axisShared}) ;"
+		],
+		"description": "création d'une base par rotation autour d'un axe"
+	},
+	"showBasis": {
+		"prefix": [
+			"showBasis",
+			"show",
+			"basis"
+		],
+		"body": [
+			"showBasis(${1:basis}, ${2:point}, ${3:coeff=(1,1,1)}, ${4:style=black+0.25}) ;"
+		],
+		"description": "Représentation de la base"
+	},
+	"showAxis": {
+		"prefix": [
+			"showAxis",
+			"show",
+			"axis"
+		],
+		"body": [
+			"showAxis(${1:basis}, ${2:tabAxis}, ${3:point}, ${4:coeff}, ${5:style=black+0.25}) ;"
+		],
+		"description": "Représentation d'axe indiqué par un tableau 0,1,2"
+	},
+	"showParameter": {
+		"prefix": [
+			"showParameter",
+			"show",
+			"parameter"
+		],
+		"body": [
+			"showParameter(${1:point}, ${2:axis1}, ${3:axis2}, ${4:stringName}, ${5:coeff=1}, ${6:style=black+0.25}) ;"
+		],
+		"description": "Représentation d'un paramètre angulaire'"
+	},
+	"namePoint": {
+		"prefix": [
+			"namePoint",
+			"name",
+			"point"
+		],
+		"body": [
+			"namePoint(${1:point}, ${2:label}) ;"
+		],
+		"description": "Affichage des points"
+	},
+	"nameClasse1point": {
+		"prefix": [
+			"nameClasse1point",
+			"name",
+			"classe",
+			"1point",
+			"point"
+		],
+		"body": [
+			"nameClasse1point(${1:label}, ${2:point}, ${3:pos=1.5*NE}, ${4:p=currentpen}) ;"
+		],
+		"description": "Affichage des numéro classe en 1 point"
+	},
+	"nameClasse2points": {
+		"prefix": [
+			"nameClasse2points",
+			"name",
+			"classe",
+			"2points",
+			"point"
+		],
+		"body": [
+			"nameClasse2points(${1:label}, ${2:point}, ${3:point}, ${4:pos=1.5*NE}, ${5:p=currentpen}) ;"
+		],
+		"description": "Affichage des numéro classe en point mileu de 2 points"
+	},
+	"simpleCubeBounding": {
+		"prefix": [
+			"cube",
+			"simpleCubeBounding",
+			"bounding",
+		],
+		"body": [
+			"simpleCubeBounding(${1:cote}) ;"
+		],
+		"description": "Boite englobante de type cube centré et de côté cote."
+	},
+	"simpleSphereBounding": {
+		"prefix": [
+			"sphere",
+			"simpleSphereBounding",
+			"bounding",
+		],
+		"body": [
+			"simpleSphereBounding(${1:rayon}) ;"
+		],
+		"description": "Boite englobante de type sphère centrée et de rayon rayon."
+	},
+	"parallelepipedBounding": {
+		"prefix": [
+			"parallelepiped",
+			"parallelepipedBounding",
+			"bounding",
+		],
+		"body": [
+			"parallelepipedBounding(${1:negPoint}, ${2:negPoint}) ;"
+		],
+		"description": "Boite englobante de type parallélépipède."
+	},
+	"endAnimationPDF": {
+		"prefix": [
+			"PDF",
+			"endAnimationPDF",
+			"animation",
+		],
+		"body": [
+			"endAnimationPDF(${1:animationObject}) ;"
+		],
+		"description": "Fin propre de création d'animation PDF."
+	},
+	"addDisque": {
+		"prefix": [
+			"addDisque",
+			"add",
+			"disque",
+		],
+		"body": [
+			"addDisque(${1:center}, ${2:normale}, ${3:rayon}, ${4:CEC}) ;"
+		],
+		"description": "ajout forme disque."
+	},
+	"addSurfConiqueTronquee": {
+		"prefix": [
+			"addSurfConiqueTronquee",
+			"cone",
+			"conique",
+			"tronquee"
+		],
+		"body": [
+			"addSurfConiqueTronquee(${1:sommet}, ${2:axe}, ${3:hauteur1},  ${4:hauteur2}, ${5:demiAngle}, ${6:CEC}) ;"
+		],
+		"description": "ajout surface conique tronquee."
+	},
+	"transChaine": {
+		"prefix": [
+			"transChaine",
+			"chaine",
+			"transmission"
+		],
+		"body": [
+			"transChaine(${1:centre1}, ${2:axe1}, ${3:rayon1},  ${4:CEC1}, ${5:centre2}, ${6:axe2}, ${7:rayon2}, ${8:CEC2}) ;"
+		],
+		"description": "transmission par chaine."
+	},
+
+
+
+
+}
