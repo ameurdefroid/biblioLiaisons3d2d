@@ -4,7 +4,7 @@
 real coeff = 1/450 ;
 real a = coeff * 890 ;
 real b = coeff * 445 ; 
-real c = coeff * 90 *2 ; //amplification
+
 real e = coeff * 900 ;
 real g = coeff * 900 ;
 real R = coeff * 1325 ;  
@@ -14,9 +14,10 @@ real dpm = coeff * 420 ;
 real dp1 = coeff * 1600 ;
 
 real theta20 = 0/360*2*pi ;
-real alpha = 3*2.4/360*2*pi ; //amplification
+real alpha = -3*2.4/360*2*pi ; //amplification
 real theta32 = -theta20*(cos(alpha)+h/R*sin(alpha)) ;
 
+real c = abs(tan(alpha)) * (h + g) ; //amplification
 
 // Bases et points :
 basis b2 = rotationBasis(2, b0, theta20, 'z', b0.z) ;
@@ -71,7 +72,7 @@ link(D5 -- D5-1*b0.z, CEC0) ;
 
 // Formes
 addSurfConiqueTronquee(O, -b21.z, 0.9*h, 1.1*h,atan(R/h), CEC3) ;
-addSurfConiqueTronquee(O, -b0.z, 0.5*h, 1.5*h, atan(R/h) + alpha, CEC0) ;
+addSurfConiqueTronquee(O, -b0.z, 0.5*h, 1.5*h, atan(R/h) + abs(alpha), CEC0) ;
 
 // Liaisons
 liaisonRotule(O, -b0.z, CEC3, CEC0) ;
