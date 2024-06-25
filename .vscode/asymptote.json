@@ -1,24 +1,11 @@
 {
-	// Place your snippets for asymptote here. Each snippet is defined under a snippet name and has a prefix, body and 
-	// description. The prefix is what is used to trigger the snippet and the body will be expanded and inserted. Possible variables are:
-	// $1, $2 for tab stops, $0 for the final cursor position, and ${1:label}, ${2:another} for placeholders. Placeholders with the 
-	// same ids are connected.
-	// Example:
-	// "Print to console": {
-	// 	"prefix": "log",
-	// 	"body": [
-	// 		"console.log('$1');",
-	// 		"$2"
-	// 	],
-	// 	"description": "Log output to console"
-	// }
 	"liaisonGlissiere": {
 		"prefix": [
 			"glissiere",
-			"liaisonsGlissiere"
+			"liaisonGlissiere"
 		],
 		"body": [
-			"liaisonsGlissiere(${1:point}, ${2:direction}, ${3:orientation}, ${4:CEC1}, ${5:CEC2}) ;"
+			"liaisonGlissiere(${1:point}, ${2:direction}, ${3:orientation}, ${4:CEC1}, ${5:CEC2}) ;"
 		],
 		"description": "Liaison glissière 3D"
 	},
@@ -156,7 +143,7 @@
 		"prefix": [
 			"transRoueVis",
 			"roue",
-			"visSansFin",
+			"visSansFin"
 		],
 		"body": [
 			"transRoueVis(${1:pointVis}, ${2:axeVis}, ${3:CEC1}, ${4:pointRoue}, ${5:axeRoue}, ${6:CEC2}) ;"
@@ -258,7 +245,7 @@
 		"prefix": [
 			"cube",
 			"simpleCubeBounding",
-			"bounding",
+			"bounding"
 		],
 		"body": [
 			"simpleCubeBounding(${1:cote}) ;"
@@ -269,7 +256,7 @@
 		"prefix": [
 			"sphere",
 			"simpleSphereBounding",
-			"bounding",
+			"bounding"
 		],
 		"body": [
 			"simpleSphereBounding(${1:rayon}) ;"
@@ -280,7 +267,7 @@
 		"prefix": [
 			"parallelepiped",
 			"parallelepipedBounding",
-			"bounding",
+			"bounding"
 		],
 		"body": [
 			"parallelepipedBounding(${1:negPoint}, ${2:negPoint}) ;"
@@ -291,7 +278,7 @@
 		"prefix": [
 			"PDF",
 			"endAnimationPDF",
-			"animation",
+			"animation"
 		],
 		"body": [
 			"endAnimationPDF(${1:animationObject}) ;"
@@ -302,7 +289,7 @@
 		"prefix": [
 			"addDisque",
 			"add",
-			"disque",
+			"disque"
 		],
 		"body": [
 			"addDisque(${1:center}, ${2:normale}, ${3:rayon}, ${4:CEC}) ;"
@@ -332,6 +319,26 @@
 		],
 		"description": "transmission par chaine."
 	},
+	"addSphere": {
+		"prefix": [
+			"addSphere",
+			"sphere"
+		],
+		"body": [
+			"addSphere(${1:centre}, ${2:rayon}, ${3:CEC}) ;"
+		],
+		"description": "ajout sphere."
+	},
+	"addUshape": {
+		"prefix": [
+			"addUshape",
+			"Ushape"
+		],
+		"body": [
+			"addUshape(${1:centre}, ${2:axisL}, ${3:axisH}, ${4:L}, ${5:H} , ${6:E}, ${7:CEC}) ;"
+		],
+		"description": "ajout Ushape."
+	}
 
 
 

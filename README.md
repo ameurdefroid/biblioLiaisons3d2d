@@ -12,21 +12,26 @@ Cette bibliothèque a pour objectif de tracer en 3d et 2d des schémas cinémati
 > [!TIP]
 > click on the image to bring you to the max resolution image.
 
-- Sinusmatic
- 
-[<img src="./examples/sinusmatic/sinusmatic_iso.png" height="300"/>](./examples/sinusmatic/sinusmatic_iso.png)
-[<img src="./examples/sinusmatic/sinusmatic_3d_another.png" height="300"/>](./examples/sinusmatic/sinusmatic_3d_another.png)
-
-- I3D
+- [imprimante 3d Delta](./examples/I3D) / [animation](./examples/I3D_anim)
  
 [<img src="./examples/I3D/I3D_iso.png" height="300"/>](./examples/I3D/I3D_iso.png)
 [<img src="./examples/I3D_anim/I3D_iso_gif.gif" height="300"/>](./examples/I3D_anim/I3D_iso_gif.gif)
 
-- concasseur de galets
+- [concasseur de galets](./examples/concasseur)
 
 [<img src="./examples/concasseur/concasseur_iso.png" height="300"/>](./examples/concasseur/concasseur_iso.png)
 [<img src="./examples/concasseur/concasseur_yz.png" height="300"/>](./examples/concasseur/concasseur_yz.png)
 
+
+- [faucheuse](./examples/faucheuse)
+
+[<img src="./examples/faucheuse/faucheuse_iso.png" height="300"/>](./examples/faucheuse/faucheuse_iso.png)
+[<img src="./examples/faucheuse/faucheuse_xy.png" height="300"/>](./examples/faucheuse/faucheuse_xy.png)
+
+- [sinusmatic](./examples/sinusmatic)
+ 
+[<img src="./examples/sinusmatic/sinusmatic_iso.png" height="300"/>](./examples/sinusmatic/sinusmatic_iso.png)
+[<img src="./examples/sinusmatic/sinusmatic_3d_another.png" height="300"/>](./examples/sinusmatic/sinusmatic_3d_another.png)
 
 - and more to view in the examples folder [examples](./examples/).
 

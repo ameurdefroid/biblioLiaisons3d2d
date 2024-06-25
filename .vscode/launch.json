@@ -9,10 +9,10 @@
             "program": "cmd.exe",
             "args": [
                 "/c",
-                "0_run.bat"
+                "runFaucheuse.bat"
             ],
             "stopAtEntry": false,
-            "cwd": "${workspaceFolder}",
+            "cwd": "${workspaceFolder}/examples/faucheuse",
             "environment": [],
             "console": "externalTerminal"
         }
