@@ -1,4 +1,4 @@
-# Bibilothèque 3d/2d de schémas cinématiques /  Library 3d/2d kinematic diagrams
+# Bibliothèque 3d/2d de schémas cinématiques /  Library 3d/2d kinematic diagrams
 
 ## Description
 
