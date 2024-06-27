@@ -1,5 +1,12 @@
 # Changelog
 
+## [v1.0.3] - 2024-06-27
+### Added
+- new example : falconHaptic
+### Changed
+- readme file updated
+
+
 ## [v1.0.2] - 2024-06-25
 ### Added
 - new example : faucheuse

@@ -9,10 +9,10 @@
             "program": "cmd.exe",
             "args": [
                 "/c",
-                "runFaucheuse.bat"
+                "runFalconHaptic.bat"
             ],
             "stopAtEntry": false,
-            "cwd": "${workspaceFolder}/examples/faucheuse",
+            "cwd": "${workspaceFolder}/examples/falconHaptic",
             "environment": [],
             "console": "externalTerminal"
         }

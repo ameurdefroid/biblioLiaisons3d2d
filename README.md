@@ -1,4 +1,4 @@
-# Bibliothèque 3d/2d de schémas cinématiques /  Library 3d/2d kinematic diagrams
+# Bibilothèque 3d/2d de schémas cinématiques /  Library 3d/2d kinematic diagrams
 
 ## Description
 
@@ -11,6 +11,11 @@ Cette bibliothèque a pour objectif de tracer en 3d et 2d des schémas cinémati
 ## Quick Gallery 
 > [!TIP]
 > click on the image to bring you to the max resolution image.
+
+- [Falcon haptic - animation](./examples/FalconHaptic_anim/)
+
+[<img src="./examples/falconHaptic_anim/falconHaptic_droite_gif.gif" height="300"/>](./examples/falconHaptic_anim/falconHaptic_droite_gif.gif)
+[<img src="./examples/falconHaptic_anim/falconHaptic_cercle_gif.gif" height="300"/>](./examples/falconHaptic_anim/falconHaptic_cercle_gif.gif)
 
 - [imprimante 3d Delta](./examples/I3D) / [animation](./examples/I3D_anim)
  
@@ -38,11 +43,11 @@ Cette bibliothèque a pour objectif de tracer en 3d et 2d des schémas cinémati
 ## Installation and use
 
 ### English
-For all information, see the documentation.pdf file.
+For all information, see the [documentation.pdf](./documentation/documentation.pdf) file.
 
 
 ### Français
-Pour toute information, voir le fichier documentation.pdf.
+Pour toute information, voir le fichier [documentation.pdf](./documentation/documentation.pdf).
 
 
 ## License / Licence
