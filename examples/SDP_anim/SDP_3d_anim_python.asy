@@ -109,7 +109,7 @@ triple E3 = E + Rcroi*b1.x + Rcroi*b0.z ;
 triple E4 = E - Rcroi*b1.x + Rcroi*b0.z ;
 
 liaisonRotule(E1, b0.z, CEC1, CEC4) ;
-liaisonLineaireAnnulaire(E2, b0.y, -b0.z, CEC4, CEC1) ;
+liaisonLineaireAnnulaire(E2, -b0.y, -b0.z, CEC4, CEC1) ;
 
 
 liaisonRotule(E3, -unit((b1.z+b3.z)), CEC1, CEC3) ;

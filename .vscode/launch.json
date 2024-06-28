@@ -9,10 +9,10 @@
             "program": "cmd.exe",
             "args": [
                 "/c",
-                "runFalconHaptic.bat"
+                "0_run.bat"
             ],
             "stopAtEntry": false,
-            "cwd": "${workspaceFolder}/examples/falconHaptic",
+            "cwd": "${workspaceFolder}/testBiblio/",
             "environment": [],
             "console": "externalTerminal"
         }

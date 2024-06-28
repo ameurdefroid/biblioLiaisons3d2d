@@ -73,6 +73,9 @@ real phi3 = offset + pi/2 + 4*pi/3 ;
 
 real [] tabPhi = {phi1, phi2, phi3} ;
 
+
+// astuce pour documentation
+// animationScriptPython()
 // LES 
 // à partir de px py pz on détermine les 9 angles
 

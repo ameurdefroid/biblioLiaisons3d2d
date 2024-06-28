@@ -1,4 +1,4 @@
-# Bibilothèque 3d/2d de schémas cinématiques /  Library 3d/2d kinematic diagrams
+# Bibliothèque 3d/2d de schémas cinématiques /  Library 3d/2d kinematic diagrams
 
 ## Description
 
@@ -12,7 +12,7 @@ Cette bibliothèque a pour objectif de tracer en 3d et 2d des schémas cinémati
 > [!TIP]
 > click on the image to bring you to the max resolution image.
 
-- [Falcon haptic - animation](./examples/FalconHaptic_anim/)
+- [Falcon haptic - animation](./examples/falconHaptic_anim/)
 
 [<img src="./examples/falconHaptic_anim/falconHaptic_droite_gif.gif" height="300"/>](./examples/falconHaptic_anim/falconHaptic_droite_gif.gif)
 [<img src="./examples/falconHaptic_anim/falconHaptic_cercle_gif.gif" height="300"/>](./examples/falconHaptic_anim/falconHaptic_cercle_gif.gif)

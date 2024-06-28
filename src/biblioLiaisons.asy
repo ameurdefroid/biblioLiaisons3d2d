@@ -78,6 +78,23 @@ basis parent ;
 triple shareAxis ;
 }
 
+
+
+/* -------------------------------------- */
+/* Default object */
+triple O = (0,0,0) ;
+triple x0 = (1,0,0) ;
+triple y0 = (0,1,0) ;
+triple z0 = (0,0,1) ;
+
+basis b0 ;
+b0.x = b0.tab[0] = x0 ;
+b0.y = b0.tab[1] = y0 ;
+b0.z = b0.tab[2] = z0 ;
+b0.number = 0 ;
+
+
+
 // Create a new basis j/i with angular position theta about axis of rotation
 basis rotationBasis(int number, basis parent, real theta, string axis, triple axisShared) {
 write('Begin basis ' + (string)number + ' ... ' ) ;
@@ -128,8 +145,8 @@ return newBasis ;
 
 
 
-
-void showBasis(basis b, triple point, triple coeff=(1,1,1), pen style=black+0.25) {
+// Old version of showBasis -- not very well implemented
+/*void showBasis(basis b, triple point, triple coeff=(1,1,1), pen style=black+0.25) {
 string number = (string)b.number ;
 write('show basis ' + number + ' ... ') ; 
 real rr = 0.1 ; // rayon axe perp
@@ -199,7 +216,94 @@ else {
 
 write('... end show basis ' + number + '.\n') ; 
 }
+*/
 
+
+/* new version of showBasis much better */
+void showBasis(basis b, triple point, triple coeff=(1,1,1), pen style=black+0.25) {
+    string number = (string)b.number ;
+    write('Begin showBasis ' + number + ' ... ') ; 
+    real rr = 0.1 ; // rayon axe perp
+
+    path3 temp ;
+    string label ;
+    align alignLocal ;
+
+    triple [] aVectors = {b.x, b.y, b.z} ;
+    real [] aCoeff = {coeff.x, coeff.y, coeff.z} ;
+    string [] aLetters = {'x','y','z'} ;
+
+
+    if (!isPlane(currentprojection.camera)) {
+
+    for (int i=0;i<3;++i) {
+        temp = point -- point+aCoeff[i]*aVectors[i] ;
+        label = "$\vec{" + aLetters[i] + "}_{" + number + "}$" ;
+        alignLocal = project(1*aVectors[i]) ;
+        draw(temp, style, Arrow3) ;
+        label(label, point+aCoeff[i]*aVectors[i], style, align=alignLocal) ;
+    }
+    }
+    else {
+        int i = 0 ;
+        while(i<3 && abs(dot(aVectors[i], currentprojection.camera)) != 1) {
+            ++i;
+        }
+        if (i!=3) {
+        triple [] aVectorsR ;
+        real [] aCoeffR ;
+        string [] aLettersR ;
+        for (int j=0;j<3;++j){
+            if (j!=i) {
+                aVectorsR.push(aVectors[j]) ;
+                aCoeffR.push(aCoeff[j]) ;
+                aLettersR.push(aLetters[j]) ;
+            }
+        }
+        for (int i=0;i<2;++i) {
+        temp = point -- point+aCoeffR[i]*aVectorsR[i] ;
+        label = "$\vec{" + aLettersR[i] + "}_{" + number + "}$" ;
+        alignLocal = project(1*aVectorsR[i]) ;
+        draw(project(temp), style, Arrow) ;
+        label(label, project(point+aCoeffR[i]*aVectorsR[i]), style, align=alignLocal) ;
+        }
+        label = "$\vec{" + aLetters[i] + "}_{" + number + "}$" ;
+        path3 c = shift(point)*align(unit(aVectors[i]))*scale(rr,rr,0)*unitcircle3 ; 
+        filldraw(project(c), white, style) ;
+        label(label, project(point+aCoeff[i]*aVectors[i]), style, align=(0,-1.5)) ;
+        // dot or cross
+        if (dot(aVectors[i], currentprojection.camera) == 1) {
+            filldraw(project(scale3(1/10)*c), black, style) ;
+        }
+        else if (dot(aVectors[i], currentprojection.camera) == -1) {
+            real aa = sqrt(2)/2 ;
+            path3 line1 = rr*aa*(b0.x+b0.y) -- rr*aa*(-b0.x-b0.y) ;
+            path3 line2 = rr*aa*(-b0.x+b0.y) -- rr*aa*(b0.x-b0.y) ;
+            draw(project(align(unit(aVectors[i]))*line1), style) ;
+            draw(project(align(unit(aVectors[i]))*line2), style) ;
+        }
+        else {
+            write("Projection isn't correct -- using showBasis") ;
+        }
+        }
+        else {
+            write("None of the vectors is orthogonal to the view but why not :-) ") ;
+            for (int i=0;i<3;++i) {
+            temp = point -- point+aCoeff[i]*aVectors[i] ;
+            label = "$\vec{" + aLetters[i] + "}_{" + number + "}$" ;
+            alignLocal = project(1*aVectors[i]) ;
+            draw(project(temp), style, Arrow) ;
+            label(label, project(point+aCoeff[i]*aVectors[i]), style, align=alignLocal) ;
+    }
+        }
+        }
+        write('... end showBasis ' + number + '.\n') ; 
+    }
+
+
+
+
+/*---------------------------*/
 
 void showAxis(basis b, int[] tabAxis, triple point, real coeff=1, pen style=black+0.25) {
 
@@ -249,6 +353,8 @@ else {
 }
 
 
+/*---------------------------*/
+
 int [] AxesToDraw(basis b, triple point) {
 
 bool test = false ;
@@ -286,21 +392,6 @@ axis2 = b2.tab[tabAxis[i]] ;
 showParameter(point, axis1, axis2, name) ;}
 }
 
-
-
-
-/* -------------------------------------- */
-/* Default object */
-triple O = (0,0,0) ;
-triple x0 = (1,0,0) ;
-triple y0 = (0,1,0) ;
-triple z0 = (0,0,1) ;
-
-basis b0 ;
-b0.x = b0.tab[0] = x0 ;
-b0.y = b0.tab[1] = y0 ;
-b0.z = b0.tab[2] = z0 ;
-b0.number = 0 ;
 
 
 
@@ -2141,7 +2232,7 @@ write('... end add cylinder at ' + (string)point + '.\n') ;
 
 /* ------------------------------------ */
 
-
+/* disque */
 
 void addDisque(triple centre, triple normal, real R, pen CEC){
 	write('Begin add disque at ' + (string)centre + ' ...') ;
@@ -2160,6 +2251,7 @@ write('... end add disque at ' + (string)centre + '.\n') ;
 /* ------------------------------------ */
 
 
+/* surface conique */
 
 void addSurfConique(triple sommet, triple axis, real hauteur, real demiAngle, pen CEC) {
 write('Begin addSurfConique ') ;
@@ -2193,9 +2285,10 @@ write('... end addSurfConique. \n') ;
 
 /* ------------------------------------ */
 
+/* surface conique tronquee */
 
 void addSurfConiqueTronquee(triple sommet, triple axis, real hauteur1, real hauteur2, real demiAngle, pen CEC) {
-write('Begin addSurfConique ') ;
+write('Begin addSurfConiqueTronquee ') ;
 triple axisPerp = unit(cross(axis,currentprojection.camera)) ;    
 path3 generatrice = (sommet+hauteur1*axis+hauteur1*tan(demiAngle)*axisPerp) -- (sommet+hauteur2*axis+hauteur2*tan(demiAngle)*axisPerp) ;
 path3 circle1 = shift(sommet+hauteur1*axis)*align(unit(axis))*scale(hauteur1*tan(demiAngle),hauteur1*tan(demiAngle),0)*unitcircle3 ;
@@ -2223,8 +2316,74 @@ else {
 	    write('not in the plane neither ortho  ! ') ;
 }
 }
-write('... end addSurfConique. \n') ;
+write('... end addSurfConiqueTronquee. \n') ;
 }
+
+
+
+/* ------------------------------------ */
+
+/* sphere */
+void addSphere(triple center, real rayon, pen CEC) { 
+write('Begin addSphere ') ;
+if (!isPlane(currentprojection.camera)) {
+   surface bouleSurf = shift(center)*scale3(rayon)*unitsphere ;
+   draw(bouleSurf, white) ;
+   revolution bouleRev = sphere(O, rayon) ;
+   draw(shift(center)*bouleRev.silhouette(), CEC) ;
+}
+else {
+	path3 cercle = unitcircle3 ;
+	filldraw(project(shift(center)*align(currentprojection.camera)*scale(rayon,rayon,0)*cercle), white, CEC) ;
+}
+write('... end addSphere. \n') ;
+}
+
+
+/* ------------------------------------ */
+
+/* Ushape */
+// function U
+void addUshape(triple center, triple axisL, triple axisH, real L, real H, real E, pen CEC){
+	write('Begin Ushape ') ;
+	
+   triple normal = unit(cross(axisL, axisH)) ;
+
+   triple reflectAcrossPlane(triple point) {
+    real d = dot(point - center, normal);
+    return point - 2 * d * normal;
+   }
+
+   triple P4 = center - L/2*unit(axisL) - E/2*normal ;
+   triple P3 = center + L/2*unit(axisL) - E/2*normal ;
+   triple P2 = P3 + H*unit(axisH) ;
+   triple P1 = P4 + H*unit(axisH) ;
+   triple P11 = reflectAcrossPlane(P1) ;
+   triple P21 = reflectAcrossPlane(P2) ;
+   triple P31 = reflectAcrossPlane(P3) ;
+   triple P41 = reflectAcrossPlane(P4) ;
+   
+   path3 rect1 = P1 -- P2 -- P3 -- P4 -- cycle ;
+   path3 rect2 = P3 -- P4 -- P41 -- P31 -- cycle ;
+   path3 rect3 = P11 -- P21 -- P31 -- P41 -- cycle ;
+   
+   if (!isPlane(currentprojection.camera)) {
+   draw(surface(rect1), CEC+opacity(0.1)) ;
+   draw(surface(rect2), CEC+opacity(0.1)) ;
+   draw(surface(rect3), CEC+opacity(0.1)) ;
+   draw(rect1, CEC) ;
+   draw(rect2, CEC) ;
+   draw(rect3, CEC) ;
+   }
+   else {
+	filldraw(project(rect1), white, CEC) ;
+    filldraw(project(rect2), white, CEC) ;
+    filldraw(project(rect3), white, CEC) ;
+   }
+   
+write('... end Ushape. \n') ;
+}
+
 
 
 

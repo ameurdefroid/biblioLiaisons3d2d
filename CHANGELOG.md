@@ -1,5 +1,12 @@
 # Changelog
 
+## [v1.0.4] - 2024-06-28
+### Changed
+- showBasis upgraded
+- all files that use that function recompiled
+- minor add in documentation
+
+
 ## [v1.0.3] - 2024-06-27
 ### Added
 - new example : falconHaptic
