@@ -1,0 +1,51 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "asy",
+            "type": "shell",
+            "command": "C:/Program Files/Asymptote/asy.exe",
+            "args": [
+                "-f",
+                "pdf",
+                "-noView",
+                "${file}"
+            ],
+            "group": {
+                "kind": "build"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "shared"
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "open-pdf",
+            "type": "shell",
+            "command": "code",
+            "args": [
+                "--goto",
+                "${fileDirname}/${fileBasenameNoExtension}.pdf"
+            ],
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "shared"
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "Compile asy and show PDF",
+            "dependsOrder": "sequence",
+            "dependsOn": [
+                "asy",
+                "open-pdf"
+            ],
+            "problemMatcher": []
+        }
+    ]
+}

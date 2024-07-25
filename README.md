@@ -38,6 +38,11 @@ Cette bibliothèque a pour objectif de tracer en 3d et 2d des schémas cinémati
 [<img src="./examples/sinusmatic/sinusmatic_iso.png" height="300"/>](./examples/sinusmatic/sinusmatic_iso.png)
 [<img src="./examples/sinusmatic/sinusmatic_3d_another.png" height="300"/>](./examples/sinusmatic/sinusmatic_3d_another.png)
 
+- [croix de Malte RSG](./examples/croixMalte_anim)
+ 
+[<img src="./examples/croixMalte_anim/croixMalte_xy_anim_0.png" height="300"/>](./examples/croixMalte_anim/croixMalte_xy_anim_0.png)
+[<img src="./examples/croixMalte_anim/croixMalte_xy_gif.gif" height="300"/>](./examples/croixMalte_anim/croixMalte_xy_gif.gif)
+
 - and more to view in the examples folder [examples](./examples/).
 
 ## Installation and use

@@ -2386,6 +2386,38 @@ write('... end Ushape. \n') ;
 
 
 
+/* ------------------------------------ */
+
+/* surface cylinder */
+void addSurfCylinder(triple point, triple axis, real r, real h, pen CEC) {
+write('Begin addSurfCylinder ') ;
+triple axisPerp = unit(cross(axis,currentprojection.camera)) ;   
+path3 generatrice = (r*axisPerp-h/2*unit(axis)) -- (r*axisPerp+h/2*unit(axis)) ; 
+path3 circle1 = shift(point+h/2*unit(axis))*align(unit(axis))*scale(r,r,0)*unitcircle3 ;
+path3 circle2 = shift(point-h/2*unit(axis))*align(unit(axis))*scale(r,r,0)*unitcircle3 ;
+if (!isPlane(currentprojection.camera)) {
+revolution surfCyl = revolution(O, generatrice, unit(axis), angle1 = 0, angle2 = 360) ;
+draw(shift(point)*surfCyl.silhouette(64), CEC) ;
+draw(shift(point)*surface(surfCyl), CEC+opacity(0.1)) ;
+draw(circle1, CEC);
+draw(circle2, CEC);
+}
+else {
+	if (abs(dot(currentprojection.camera, unit(axis)))==1) {
+	draw(project(circle1), CEC);
+	}
+	else if (dot(currentprojection.camera, unit(axis)) == 0) {
+path3 generatriceBis = (point-r*axisPerp-h/2*unit(axis)) -- (point-r*axisPerp+h/2*unit(axis)) ; 
+path rect = project(shift(point)*generatrice) -- project(reverse(generatriceBis)) -- cycle ;
+filldraw(rect, CEC+opacity(0.1), CEC) ;
+	}
+	else {
+	    write('not in the plane neither ortho  ! ') ;
+}
+}
+write('... end addSurfCylinder. \n') ;
+}
+
 
 
 

@@ -338,6 +338,16 @@
 			"addUshape(${1:centre}, ${2:axisL}, ${3:axisH}, ${4:L}, ${5:H} , ${6:E}, ${7:CEC}) ;"
 		],
 		"description": "ajout Ushape."
+	},
+	"addSurfCylinder ": {
+		"prefix": [
+			"addSurfCylinder ",
+			"cylindre","cylinder","addSurfCylinder",
+		],
+		"body": [
+			"addSurfCylinder(${1:centre}, ${2:axis}, ${3:r}, ${4:L}, ${5:CEC}) ;"
+		],
+		"description": "ajout Ushape."
 	}
 
 

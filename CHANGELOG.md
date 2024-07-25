@@ -1,5 +1,14 @@
 # Changelog
 
+## [v1.0.5] - 2024-06-28
+### Changed
+- the installation section of the documentation has been rewritten
+- Readme file updated 
+### Added
+- new examples : croixMalte and croixMalte_anim
+- new : addSurfCylinder
+
+
 ## [v1.0.4] - 2024-06-28
 ### Changed
 - showBasis upgraded
