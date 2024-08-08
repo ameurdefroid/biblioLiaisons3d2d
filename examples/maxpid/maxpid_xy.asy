@@ -1,7 +1,7 @@
 /* maxpid 2D xy
-   v1.0
+   v1.0.1
    Exemple de la bibliothèque
-   11/06/2024
+   31/07/2024
    Anthony Meurdefroid */
 
 
@@ -50,11 +50,11 @@ namePoint(D,"D",(-2,0)) ;
 showBasis(b0, O, coeff=(Lx+R, Ly+1, 2)) ; 
 int [] tabAxis = {0} ;
 showAxis(b2, tabAxis , A, R+brasSupp+1) ;
-showParameter(A, b0.x, b2.x, "$\theta_{20}$", coeff=2, style=black+0.25) ;
+showParamAng(A, b0.x, b2.x, "$\theta_{20}$", coeff=2, style=black+0.25) ;
 
 showAxis(b0, tabAxis , B, lambda - 0.9) ;
 showAxis(b1, tabAxis , B, lambda - 0.9) ;
-showParameter(B, b0.x, b1.x, "$\theta_{10}$", coeff=lambda/2, style=black+0.25) ;
+showParamAng(B, b0.x, b1.x, "$\theta_{10}$", coeff=lambda/2, style=black+0.25) ;
 
 
 

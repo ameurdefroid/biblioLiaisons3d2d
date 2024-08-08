@@ -189,20 +189,55 @@
 			"axis"
 		],
 		"body": [
-			"showAxis(${1:basis}, ${2:tabAxis}, ${3:point}, ${4:coeff}, ${5:style=black+0.25}) ;"
+			"showAxis(${1:basis}, ${2:tabAxis}, ${3:point}, ${4:coeff=1}, ${5:style=black+0.25}) ;"
 		],
 		"description": "Représentation d'axe indiqué par un tableau 0,1,2"
 	},
-	"showParameter": {
+	"showAxisName": {
 		"prefix": [
-			"showParameter",
+			"showAxisName",
 			"show",
-			"parameter"
+			"axis","name"
 		],
 		"body": [
-			"showParameter(${1:point}, ${2:axis1}, ${3:axis2}, ${4:stringName}, ${5:coeff=1}, ${6:style=black+0.25}) ;"
+			"showAxisName(${1:axis}, ${2:point}, ${3:name}, ${4:coeff=1}, ${5:style=black+0.25}) ;"
+		],
+		"description": "Représentation d'axe indiqué par un tableau 0,1,2"
+	},
+	"showParamAng": {
+		"prefix": [
+			"showParamAng",
+			"show",
+			"parameter",
+			"angular"
+		],
+		"body": [
+			"showParamAng(${1:point}, ${2:axis1}, ${3:axis2}, ${4:stringName}, ${5:coeff=1}, ${6:style=black+0.25}) ;"
 		],
 		"description": "Représentation d'un paramètre angulaire'"
+	},
+	"showParamLin": {
+		"prefix": [
+			"showParamLin",
+			"show",
+			"parameter",
+			"linear"
+		],
+		"body": [
+			"showParamLin(${1:pointStart}, ${2:pointEnd}, ${3:dirDimLine}, ${4:dirExtLine}, ${5:name}, ${6:offset=1}, ${7:pos=1*N}, ${8:style=black+0.25}) ;"
+		],
+		"description": "Représentation d'un paramètre linéaire'"
+	},
+	"showDimension": {
+		"prefix": [
+			"showDimension",
+			"show",
+			"dimension"
+		],
+		"body": [
+			"showDimension(${1:pointStart}, ${2:pointEnd}, ${3:dirDimLine}, ${4:dirExtLine}, ${5:name}, ${6:offset=1}, ${7:pos=1*N}, ${8:style=black+0.25}, ${9:posDim='middle'}) ;"
+		],
+		"description": "Représentation d'une cote'"
 	},
 	"namePoint": {
 		"prefix": [
@@ -308,6 +343,18 @@
 		],
 		"description": "ajout surface conique tronquee."
 	},
+	"addSurfPlane": {
+		"prefix": [
+			"addSurfPlane",
+			"plane",
+			"plan",
+			"surface"
+		],
+		"body": [
+			"addSurfPlane(${1:center}, ${2:axe1}, ${3:cote1},  ${4:axe2}, ${5:cote2}, ${6:CEC}) ;"
+		],
+		"description": "ajout surface plane par point milieu."
+	},
 	"transChaine": {
 		"prefix": [
 			"transChaine",
@@ -348,7 +395,58 @@
 			"addSurfCylinder(${1:centre}, ${2:axis}, ${3:r}, ${4:L}, ${5:CEC}) ;"
 		],
 		"description": "ajout Ushape."
+	},
+	"addArrowText ": {
+		"prefix": [
+			"addArrowText ",
+			"add","arrow","text",
+		],
+		"body": [
+			"addArrowText(${1:startPoint}, ${2:endPoint}, ${3:name}, ${4:posText=0.5}, ${5:pos = 1*N}, ${6:style = black+0.25}) ;"
+		],
+		"description": "ajout flèche avec texte."
+	},
+	"addText ": {
+		"prefix": [
+			"addText ",
+			"add","text",
+		],
+		"body": [
+			"addText(${1:label}, ${2:point}, ${3:pos = 1*N}, ${4:style = black}) ;"
+		],
+		"description": "ajout texte."
+	},
+	"importSTL ": {
+		"prefix": [
+			"importSTL ",
+			"STL","import"
+		],
+		"body": [
+			"importSTL(${1:name}, ${2:center}, ${3:exSTL}, ${4:eySTL}, ${5:scaleSTL}, ${6:CEC}) ;"
+		],
+		"description": "ajout Ushape."
+	},	
+	"addSpring ": {
+		"prefix": [
+			"addSpring ",
+			"spring","ressort",
+		],
+		"body": [
+			"addSpring(${1:pointA}, ${2:pointB}, ${3:N=8}) ;"
+		],
+		"description": "ajout ressort."
+	},
+	"createBasis ": {
+		"prefix": [
+			"createBasis ",
+			"create","base","basis",
+		],
+		"body": [
+			"createBasis(${1:number}, ${2:x}, ${3:y}) ;"
+		],
+		"description": "création base par deux vecteurs x et y."
 	}
+	
 
 
 

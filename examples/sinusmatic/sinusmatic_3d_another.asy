@@ -1,7 +1,7 @@
 /* Sinusmatic 3D autre
-   v1.0
+   v1.0.1
    Exemple de la bibliothèque
-   11/06/2024
+   31/07/2024
    Anthony Meurdefroid */
 
 
@@ -64,7 +64,7 @@ showAxis(b0, tab1, C, coeff=2, style=black+0.25+dashed) ;
 
 
 // Paramètres
-showParameter(C, b0.y, b4.y, "$\theta_{40}$", coeff=1.5, style=black+0.25) ;
-showParameter(C, b0.z, b4.z, "$\theta_{40}$", coeff=1.5, style=black+0.25) ;
-showParameter(O, b0.x, b1.x, "$\theta_{10}$", coeff=2.75, style=black+0.25) ;
-showParameter(B, b1.x, b2.x, "$\theta_{21}$", coeff=1, style=black+0.25) ;
+showParamAng(C, b0.y, b4.y, "$\theta_{40}$", coeff=1.5, style=black+0.25) ;
+showParamAng(C, b0.z, b4.z, "$\theta_{40}$", coeff=1.5, style=black+0.25) ;
+showParamAng(O, b0.x, b1.x, "$\theta_{10}$", coeff=2.75, style=black+0.25) ;
+showParamAng(B, b1.x, b2.x, "$\theta_{21}$", coeff=1, style=black+0.25) ;

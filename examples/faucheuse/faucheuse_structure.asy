@@ -92,7 +92,7 @@ link(H+y*b0.y -- H+(y+decF+r1)*b0.y, CEC4) ;
 addUshape(H+y*b0.y-0.25*b0.z, b0.x, b0.z, 0.5, 0.5, 0.5, CEC4) ;
 // sphere
 real rayonSphere = 0.25 ;
-addSphere(E, rayonSphere, CEC4) ;
+addSphere(E, rayonSphere, CEC3) ;
 
 
 // liaisons

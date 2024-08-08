@@ -1,0 +1,15 @@
+settings.render = -4 ;
+settings.prc = false ;
+import biblioLiaisons ;
+defaultpen(fontsize(10pt)) ;
+unitsize(1cm) ;
+triple eye = (1,1,1) ;
+triple up = (0,1,0) ;
+currentprojection = orthographic(eye, up, O) ;
+currentlight = nolight ;
+showBasis(b0, O, coeff=1.5*(1,1,1)) ;
+triple A = (-0.75,0,0) ; triple B = (1,1,0) ; triple C = (1,1,0.5);
+showDimension(A, B, b0.x, -b0.y, '$a$', style = red+0.25) ;
+showDimension(B, C, b0.z, -b0.x, '$b$', offset = 0, style = deepgreen+0.25, posDim="left") ;
+showDimension(A, B, b0.y, -b0.x, '$c$', offset = 0.25, style = blue+0.25, posDim="right", pos=W) ;
+namePoint(A,'A', pos=N) ; namePoint(B,'B', pos=N) ; namePoint(C,'C', pos=N) ;

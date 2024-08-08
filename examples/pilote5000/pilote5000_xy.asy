@@ -1,7 +1,7 @@
 /* Pilote 5000 xy
-   v1.0
+   v1.0.1
    Exemple de la bibliothèque
-   11/06/2024
+   31/07/2024
    Anthony Meurdefroid */
    
    
@@ -97,8 +97,8 @@ int[] tabIndices = {1} ;
 showAxis(b2, tabIndices, A, R + 2, style=black+0.125) ;
 showAxis(b0, tabIndices, A, L2+2 -dot(A-O, b0.y), style=black+0.125) ;
 
-showParameter(O, b0.x, b1.x, "$\alpha$", 2) ;
-showParameter(A, b0.y, b2.y, "$\beta$", 3) ;
+showParamAng(O, b0.x, b1.x, "$\alpha$", 2) ;
+showParamAng(A, b0.y, b2.y, "$\beta$", 3) ;
 
 nameClasse1point("0", O-decBati*b0.y, 5*E, CEC0);
 nameClasse2points("1", O+prof*b1.y, PG+prof*b1.y, 1.5*N, CEC1);

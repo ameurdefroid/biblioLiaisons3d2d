@@ -47,7 +47,7 @@ link(D -- D-1*b0.x, CEC0) ;
 liaisonPivot(O, b0.x, b0.y, CEC0, CEC1) ;
 liaisonPivotGlissant(A, b1.x, CEC1, CEC2) ;
 liaisonRotule(B, -b2.x, CEC2, CEC3) ;
-liaisonAppuiPlan(C, -b2.x, b2.y, CEC3, white) ; //astuce
+liaisonAppuiPlan(C, -b2.x, b2.y, CEC3, white) ; //trick
 
 // Formes
 addDisque(D, b2.x, Rdisque, CEC0) ;

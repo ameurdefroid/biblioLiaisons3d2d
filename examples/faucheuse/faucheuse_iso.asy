@@ -1,7 +1,7 @@
 /* Faucheuse 
-   v1.0
+   v1.0.1
    Exemple de la bibliothèque
-   24/06/2024
+   31/07/2024
    Anthony Meurdefroid */
 
 
@@ -65,5 +65,5 @@ showAxis(b3, tabAxis, Bproj, length(E-Bproj)+1.5, style=black+0.25) ;
 int[] tabAxis = {1} ;
 showAxis(b3, tabAxis, B-rg*b3.y, 3*rg+1.5, style=black+0.25) ;
 showAxis(b1, tabAxis, O, 3*rg+1.5, style=black+0.25) ;
-showParameter(O, b0.y, b1.y, "$\theta$", coeff=3*rg+1, style=black+0.25) ;
-showParameter(D, -b0.x, -b3.x, "$\varphi$", coeff=length(D - (Bproj + rg*b3.x) )*0.75, style=black+0.25) ;
+showParamAng(O, b0.y, b1.y, "$\theta$", coeff=3*rg+1, style=black+0.25) ;
+showParamAng(D, -b0.x, -b3.x, "$\varphi$", coeff=length(D - (Bproj + rg*b3.x) )*0.75, style=black+0.25) ;

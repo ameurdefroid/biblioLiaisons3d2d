@@ -16,5 +16,10 @@
 *.nav
 *.snm
 *.vrb
+*.idx
+*.ilg
+*.ind
+*.listing
+*.ist
 ##FOLDERS
 testBiblio/

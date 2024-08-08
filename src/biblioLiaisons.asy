@@ -1,6 +1,6 @@
 /* Bibilotheque de liaisons mécaniques V Fr
 Non performant mais pratique.
-v.0.1
+v.1.0.6
 Anthony Meurdefroid
 */
 
@@ -128,17 +128,20 @@ return newBasis ;
 
 
 
-basis createBasis(int number, basis parent, real theta, triple x, triple y) {
+basis createBasis(int number, triple x, triple y) {
 write('Begin basis ...') ;
-triple z = unit(cross(x,y)) ; 
+triple ex = unit(x) ;
+triple ey = unit(y - dot(y,ex)*ex) ;
+triple ez = cross(ex,ey) ; 
 basis newBasis ;
-newBasis.parent = parent ;
-newBasis.angle = theta ;
-newBasis.x = newBasis.tab[0] = x ;
-newBasis.y = newBasis.tab[1] = y ;
-newBasis.z = newBasis.tab[2] = z ;
+// to keep the same structure
+newBasis.parent = b0 ; //default value
+newBasis.angle = 0 ; //default value
+newBasis.x = newBasis.tab[0] = ex ;
+newBasis.y = newBasis.tab[1] = ey ;
+newBasis.z = newBasis.tab[2] = ez ;
 newBasis.number = number ;
-newBasis.shareAxis = z ;
+newBasis.shareAxis = ez ; //default value
 write('... end basis.\n') ;
 return newBasis ;
 }
@@ -304,6 +307,7 @@ void showBasis(basis b, triple point, triple coeff=(1,1,1), pen style=black+0.25
 
 
 /*---------------------------*/
+/* showAxis */
 
 void showAxis(basis b, int[] tabAxis, triple point, real coeff=1, pen style=black+0.25) {
 
@@ -334,6 +338,30 @@ for (int i=0; i<tabAxis.length; ++i){
 
 
 /*---------------------------*/
+/* showAxisName */
+
+void showAxisName(triple axis, triple point, string name, real coeff=1, pen style=black+0.25) {
+
+write('Begin showAxisName ...') ;
+align alignLocal = project(1*unit(axis)) ;
+
+if (!isPlane(currentprojection.camera)) {
+draw(point--point+coeff*unit(axis), style, Arrow3) ; 
+label(name, point+coeff*unit(axis), style, align=alignLocal) ;}
+
+else {
+draw(project(point--point+coeff*unit(axis)), style, Arrow) ; 
+label(name, project(point+coeff*unit(axis)), style, align=alignLocal) ;
+}
+write('... end showAxisName.\n') ;
+}
+
+
+
+
+
+/*---------------------------*/
+// Old name -> But i keep it in case of
 
 void showParameter(triple point, triple axis1, triple axis2, string name, real coeff=1, pen style=black+0.25) {
 
@@ -351,6 +379,26 @@ else {
 }
 
 }
+
+
+//New name by creation of showParamLin
+void showParamAng(triple point, triple axis1, triple axis2, string name, real coeff=1, pen style=black+0.25) {
+	write('Begin showParamAng ' + name + ' ...') ;
+triple axeLocal = unit(axis1+axis2) ;
+align alignLocal = project(1*axeLocal) ;
+
+if (!isPlane(currentprojection.camera)) {
+draw(L=Label(name, position=Relative(0.5), align=alignLocal), 
+arc(point, point+coeff*axis1, point+coeff*axis2), style, Arrow3) ;
+}
+else {
+    draw(L=Label(name, position=Relative(0.5), align=alignLocal), 
+    project(arc(point, point+coeff*axis1, point+coeff*axis2)), style, Arrow) ;
+}
+write('... end showParamAng ' + name + '.\n') ;
+}
+
+
 
 
 /*---------------------------*/
@@ -391,6 +439,104 @@ axis1 = b1.tab[tabAxis[i]] ;
 axis2 = b2.tab[tabAxis[i]] ;
 showParameter(point, axis1, axis2, name) ;}
 }
+
+
+
+
+
+/*---------------------------*/
+
+
+
+void showParamLin(triple pointStart, triple pointEnd, triple dirDimLine, triple dirExtLine, string name, real offset=1, pair pos=1*N, pen style=black+0.25) {
+write('Begin showParamLin ' + name + ' ...') ;
+// In case off
+triple eDirExtLine = unit(dirExtLine) ;
+triple eDirDimLine = unit(dirDimLine) ;
+
+real ll = dot(pointEnd-pointStart, eDirDimLine) ;
+triple pointDraw = pointStart + offset*eDirExtLine ;
+triple pointArrow = pointDraw + ll*eDirDimLine ;
+
+
+
+
+if (!isPlane(currentprojection.camera)) {
+	draw(L=Label(name, position=Relative(0.5), align=pos), pointDraw -- pointArrow , style, Arrow3) ;
+	draw(pointStart -- pointDraw, style) ;
+	draw(pointEnd -- pointArrow, style) ;
+}
+else {
+	draw(L=Label(name, position=Relative(0.5), align=pos), project(pointDraw -- pointArrow) , style, Arrow) ;
+	draw(project(pointStart -- pointDraw), style) ;
+	draw(project(pointEnd -- pointArrow), style) ;
+}
+write('... end showParamLin ' + name + '.\n') ;
+}
+
+
+
+void showDimension(triple pointStart, triple pointEnd, triple dirDimLine, triple dirExtLine, string name, real offset=1, pair pos=1*N, pen style=black+0.25, string posDim = "middle") {
+write('Begin showDimension ' + name + ' ...') ;
+// In case off
+triple eDirExtLine = unit(dirExtLine) ;
+triple eDirDimLine = unit(dirDimLine) ;
+
+real ll = dot(pointEnd-pointStart, eDirDimLine) ;
+if (ll<0) {
+	eDirDimLine = -eDirDimLine ;
+}
+ll = abs(ll) ;
+triple pointDraw = pointStart + offset*eDirExtLine ;
+triple pointArrow = pointDraw + ll*eDirDimLine ;
+
+real posLetterMiddle = 0.5 ;
+real decLetter = 0.5 ;
+real decOtherSide = 0.25 ;
+real posLetter = 0.4 ;
+
+
+if (!isPlane(currentprojection.camera)) {
+	if (posDim == "middle") {
+		draw(L=Label(name, position=Relative(posLetterMiddle), align=pos), pointDraw -- pointArrow , style, Arrows3) ;}
+	else if (posDim == "left") {
+		draw(L=Label(name, position=Relative(posLetter), align=pos), pointDraw -decLetter*eDirDimLine-- pointDraw , style, Arrow3) ;
+		draw(pointArrow +decOtherSide*eDirDimLine-- pointArrow , style, Arrow3) ;
+		draw(pointDraw -- pointArrow , style) ;
+		}
+	else if (posDim == "right") {
+		draw(L=Label(name, position=Relative(posLetter), align=pos), pointArrow +decLetter*eDirDimLine-- pointArrow , style, Arrow3) ;
+		draw(pointDraw -decOtherSide*eDirDimLine-- pointDraw , style, Arrow3) ;
+		draw(pointDraw -- pointArrow , style) ;
+	}
+	else {
+		write("key word error") ;
+	}
+	draw(pointStart -- pointDraw, style) ;
+	draw(pointEnd -- pointArrow, style) ;
+}
+else {
+	if (posDim == "middle") {
+	draw(L=Label(name, position=Relative(posLetterMiddle), align=pos), project(pointDraw -- pointArrow) , style, Arrows) ;}
+	else if (posDim == "left") {
+		draw(L=Label(name, position=Relative(posLetter), align=pos), project(pointDraw -decLetter*eDirDimLine-- pointDraw) , style, Arrow) ;
+		draw(project(pointArrow +decOtherSide*eDirDimLine-- pointArrow) , style, Arrow) ;
+		draw(project(pointDraw -- pointArrow) , style) ;
+	}
+	else if (posDim == "right") {
+		draw(L=Label(name, position=Relative(posLetter), align=pos), project(pointArrow +decLetter*eDirDimLine-- pointArrow) , style, Arrow) ;
+		draw(project(pointDraw -decOtherSide*eDirDimLine-- pointDraw) , style, Arrow) ;
+		draw(project(pointDraw -- pointArrow) , style) ;
+	}
+	else {
+		write("key word error") ;
+	}
+	draw(project(pointStart -- pointDraw), style) ;
+	draw(project(pointEnd -- pointArrow), style) ;
+}
+write('... end showDimension ' + name + '.\n') ;
+}
+
 
 
 
@@ -2424,6 +2570,103 @@ write('... end addSurfCylinder. \n') ;
 
 /* ------------------------------------ */
 
+/* surface plane */
+void addSurfPlane(triple center, triple axis1, real c1, triple axis2, real c2, pen CEC) {
+write('Begin addSurfPlane ') ;
+triple eAxis1 = unit(axis1) ;
+triple eAxis2 = unit(axis2) ;
+
+triple P1 = center -c1/2*eAxis1 - c2/2*eAxis2 ;
+triple P2 = center +c1/2*eAxis1 - c2/2*eAxis2 ;
+triple P3 = center +c1/2*eAxis1 + c2/2*eAxis2 ;
+triple P4 = center -c1/2*eAxis1 + c2/2*eAxis2 ;
+path3 pathPlan = P1 -- P2 -- P3 -- P4 -- cycle ;
+
+triple vOrtho = unit(cross(axis1, axis2)) ;
+
+if (!isPlane(currentprojection.camera)) {
+draw(surface(pathPlan), CEC+opacity(0.2)) ;
+draw(pathPlan, CEC) ;
+}
+else {
+	if (abs(dot(currentprojection.camera, vOrtho))==1) {
+	filldraw(project(pathPlan), CEC+opacity(0.2), CEC) ;
+	}
+	else if (dot(currentprojection.camera, vOrtho) == 0) {
+	draw(project(pathPlan), CEC) ;
+	}
+	else {
+	    write('not in the plane neither ortho  ! ') ;
+		filldraw(project(pathPlan), CEC+opacity(0.2), CEC) ;
+}
+}
+write('... end addSurfPlane. \n') ;
+}
+
+
+
+/* ------------------------------------ */
+
+/* importSTL */
+void importSTL(string nameSTL, triple center, triple exSTL, triple eySTL, real scaleSTL, pen CEC, real valOpa=0.2) {
+write('Begin importSTL ') ;
+
+transform3 matOrientation = shift(center)*transform3(exSTL, eySTL)*scale3(scaleSTL) ;
+transform3 normaleOrientation = transform3(exSTL, eySTL) ;
+
+write(nameSTL) ;
+objectSTL AAA = readstlfileFull(nameSTL, matOrientation, normaleOrientation, currentprojection.camera ) ;
+// Informations 
+write('----------------') ;
+write('MESH') ;
+//write(AAA.mesh) ;
+write('nb elements : ' , AAA.mesh.length) ;
+write('EDGES') ;
+//write(AAA.edges) ;
+write('nb edges : ' , AAA.edges.length) ;
+write('NORMALS') ;
+//write(AAA.normals) ;
+write('nb normals : ' , AAA.normals.length) ;
+write('VERTICES') ;
+//write(AAA.vertices) ;
+write('nb vertices : ', AAA.vertices.length) ;
+write('----------------') ;
+write('TABINDICES MESH') ;
+//write(AAA.tabIndicesMesh) ;
+write('nb : ', AAA.tabIndicesMesh.length) ;
+write('----------------') ;
+write('EDGES TO DRAW') ;
+//write(AAA.edgesToDraw) ;
+write('nb : ', AAA.edgesToDraw.length) ;
+write('----------------') ;
+
+if (!isPlane(currentprojection.camera)) {
+	draw(AAA.edgesToDraw, CEC) ;
+	draw(AAA.surf, CEC+opacity(valOpa)) ;
+}
+
+else {
+	draw(project(AAA.edgesToDraw), CEC) ;
+	/*
+	if (abs(dot(currentprojection.camera, vOrtho))==1) {
+
+	}
+	else if (dot(currentprojection.camera, vOrtho) == 0) {
+
+	}
+	else {
+	    write('not in the plane neither ortho  ! ') ;
+
+}*/
+}
+write('... end importSTL. \n') ;
+}
+
+
+
+
+/* ------------------------------------ */
+
 
 
 /* ------------------------------------ */ 
@@ -2495,6 +2738,61 @@ label("$("+label+")$", mid, pos, p);
 }
 write('... end nameClasse2points ' + label + '\n') ;
 }
+
+
+
+
+/* ------------------------------------ */ 
+/* Arrow with text */
+
+void addArrowText(triple startPoint, triple endPoint, string name, real posText=0.5, pair pos = 1*N, pen style = black+0.25){
+	
+	write('Begin addArrowText ' + name + ' ...') ;
+
+if (!isPlane(currentprojection.camera)) {
+	draw(L=Label(name, position=Relative(posText), align=pos), startPoint -- endPoint , style, Arrow3) ;
+}
+else {
+	draw(L=Label(name, position=Relative(posText), align=pos), project(startPoint -- endPoint) , style, Arrow) ;
+}
+write('... end addArrowText ' + name + '.\n') ;
+	
+}
+
+/* ------------------------------------ */ 
+/* Arrow with text */
+
+void addArrow(triple startPoint, triple endPoint, pen style = black+0.25){
+	
+	write('Begin addArrow ' + ' ...') ;
+
+if (!isPlane(currentprojection.camera)) {
+	draw(startPoint -- endPoint , style, Arrow3) ;
+}
+else {
+	draw(project(startPoint -- endPoint) , style, Arrow) ;
+}
+write('... end addArrow ' + '.\n') ;
+	
+}
+
+
+
+/* ------------------------------------ */ 
+/* add text */
+void addText(string text, triple point , pair pos = 1*N, pen style = black){
+write('Begin addText ' + text) ;
+if (!isPlane(currentprojection.camera)) {
+label(text, point, pos, style);
+}
+else 
+{
+label(text, project(point), pos, style);
+}
+write('... end addText ' + text + '\n') ;
+}
+
+
 
 
 /* ------------------------------------ */

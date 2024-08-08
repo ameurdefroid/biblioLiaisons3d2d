@@ -1,7 +1,7 @@
 /* pompe à pistons axiaux 2d xy
-   v1.0
+   v1.0.1
    Exemple de la bibliothèque
-   06/06/2024
+   31/07/2024
    Anthony Meurdefroid */
 
 
